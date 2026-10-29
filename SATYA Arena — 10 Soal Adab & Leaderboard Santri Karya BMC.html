@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SATYA Arena — 10 Soal Adab & Leaderboard Santri Karya BMC</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3F5FC;--surface:#fff;--ink:#0B1F4A;--muted:#52618A;--navy:#14307A;--soft:#E4EAF9;--gold:#FFC72C;--red:#E02B3A;--good:#16874A;--good-s:#DCF3E4;--bad:#B3261E;--bad-s:#FBE3E1;--line:#CBD5EE;--on:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#081028;--surface:#101C40;--ink:#EEF2FF;--muted:#9FB0DA;--navy:#FFC72C;--soft:#1A2A5A;--good:#5BD68E;--good-s:#133626;--bad:#FF8A80;--bad-s:#3F1B1B;--line:#27397A;--on:#081028}}
+:root[data-theme="dark"]{--bg:#081028;--surface:#101C40;--ink:#EEF2FF;--muted:#9FB0DA;--navy:#FFC72C;--soft:#1A2A5A;--good:#5BD68E;--good-s:#133626;--bad:#FF8A80;--bad-s:#3F1B1B;--line:#27397A;--on:#081028}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 Figtree,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;margin:0;line-height:1.05}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px}
+.hero{padding:44px 0 26px}
+.sticker{display:inline-block;background:var(--gold);color:#0B1F4A;font-weight:700;font-size:14px;padding:6px 12px;border-radius:8px;transform:rotate(-2deg)}
+h1{font-size:clamp(64px,18vw,130px);font-weight:800;letter-spacing:-.04em;color:var(--navy);margin:14px 0 4px}
+.sub{font:800 clamp(20px,5vw,30px)/1.15 "Bricolage Grotesque",sans-serif;margin:0 0 14px}
+.sub mark{background:var(--red);color:#fff;padding:1px 10px;border-radius:6px}
+.lead{color:var(--muted);margin:0 0 22px;max-width:50ch}
+.btn{font:700 17px Figtree,sans-serif;background:var(--navy);color:var(--on);border:0;border-radius:14px;padding:15px 24px;cursor:pointer;transition:transform .12s}
+.btn:active{transform:scale(.96)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn:focus-visible,.opt:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+section{padding:26px 0}
+h2{font-size:clamp(28px,7vw,42px);font-weight:800;margin-bottom:8px;letter-spacing:-.02em}
+.card{background:var(--surface);border:1.5px solid var(--line);border-radius:22px;padding:22px}
+.hint{color:var(--muted);margin:0 0 16px}
+input{width:100%;font:600 18px Figtree,sans-serif;padding:14px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);margin:6px 0 14px}
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 16px;text-align:center}
+.rules div{background:var(--soft);border-radius:12px;padding:10px 6px;font-size:13px}
+.rules b{display:block;font:800 22px "Bricolage Grotesque",sans-serif}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--muted);margin-bottom:8px;gap:8px}
+.chip{background:var(--soft);border-radius:99px;padding:4px 12px;font-weight:600;color:var(--ink)}
+.chip.hot{background:var(--gold);color:#0B1F4A}
+.timer{height:8px;background:var(--soft);border-radius:9px;overflow:hidden;margin-bottom:16px}
+.timer i{display:block;height:100%;width:100%;background:var(--gold);transform-origin:left}
+.q{font:800 clamp(22px,5.5vw,28px)/1.18 "Bricolage Grotesque",sans-serif;margin:0 0 6px}
+.case{color:var(--muted);margin:0 0 16px;font-size:16px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;text-align:left;width:100%;font:500 16px/1.4 Figtree,sans-serif;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:13px 14px;cursor:pointer;transition:transform .1s}
+.opt:active{transform:scale(.985)}
+.opt b{flex:none;width:28px;height:28px;border-radius:9px;background:var(--soft);display:grid;place-items:center;font-size:14px}
+.opt.sel{border-color:var(--navy);background:var(--soft)}
+.opt.ok{border-color:var(--good);background:var(--good-s)}
+.opt.ok b{background:var(--good);color:var(--bg)}
+.opt.no{border-color:var(--bad);background:var(--bad-s)}
+.opt.no b{background:var(--bad);color:var(--bg)}
+.opt:disabled{cursor:default}
+.fb{display:none;margin-top:14px;padding:13px 15px;border-radius:14px;background:var(--good-s)}
+.fb.show{display:block;animation:pop .25s}
+.fb.bad{background:var(--bad-s)}
+@keyframes pop{from{transform:scale(.96);opacity:0}}
+.row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.big{font:800 clamp(64px,18vw,96px) "Bricolage Grotesque",sans-serif;color:var(--navy);line-height:.95}
+.stats{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.badge{font:800 22px "Bricolage Grotesque",sans-serif;margin:4px 0}
+.podium{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:8px;align-items:end;margin:18px 0}
+.pod{background:var(--soft);border-radius:16px 16px 0 0;padding:12px 6px;text-align:center;min-width:0}
+.pod.p1{background:var(--gold);color:#0B1F4A;padding-top:22px}
+.pod .m{font-size:30px}
+.pod .n{font:800 16px "Bricolage Grotesque",sans-serif;overflow-wrap:anywhere}
+.pod .s{font-size:13px;opacity:.85}
+.lb{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.lb li{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:9px 12px}
+.lb li.me{border-color:var(--gold);background:var(--soft)}
+.lb .r{font:800 17px "Bricolage Grotesque",sans-serif;color:var(--muted)}
+.lb .nm{font-weight:600;overflow-wrap:anywhere}
+.lb small{display:block;color:var(--muted);font-size:13px;font-weight:400}
+.lb .pt{font:800 18px "Bricolage Grotesque",sans-serif}
+.note{background:var(--soft);border-radius:12px;padding:10px 14px;font-size:14px;margin:0 0 14px}
+.closing{background:#14307A;color:#fff;border-radius:22px;padding:28px 24px;border-bottom:6px solid var(--gold)}
+.closing p{font:800 clamp(20px,4.5vw,27px)/1.25 "Bricolage Grotesque",sans-serif;margin:0 0 12px}
+.closing small{color:var(--gold);font-size:15px}
+footer{padding:22px 0 40px;color:var(--muted);font-size:14px}
+textarea{width:100%;font:500 15px Figtree,sans-serif;padding:12px 14px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);resize:vertical}
+.code{font:600 14px ui-monospace,Menlo,monospace;background:var(--bg);border:1.5px dashed var(--line);border-radius:10px;padding:10px 12px;margin-top:8px;overflow-wrap:anywhere;user-select:all}
+body.tv .hero,body.tv #main,body.tv footer,body.tv .closing{display:none}
+body.tv .wrap{max-width:1100px}
+body.tv .lb li{font-size:22px;padding:12px 16px}
+body.tv .pod .n{font-size:28px}body.tv .pod .m{font-size:46px}
+.cf{position:fixed;top:-30px;font-size:26px;pointer-events:none;animation:fall 2.4s ease-in forwards;z-index:9}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:.9}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.cf{display:none}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <span class="sticker">Kajian SMK · Santri Karya BMC</span>
+  <h1>SATYA</h1>
+  <p class="sub">Siapa paling tepat dan cepat? <mark>Rebut juara</mark></p>
+  <p class="lead">Isi namamu, lalu jawab 10 soal (sekitar 5 menit) tentang adab kerja yang membawa dampak bagi diri dan organisasi. Makin tepat dan makin cepat, makin tinggi peringkatmu.</p>
+  <button class="btn" onclick="go('main')">Ikut kuis</button>
+  <button class="btn ghost" onclick="go('lbs')">Lihat leaderboard</button>
+</div></header>
+
+<section id="main"><div class="wrap">
+  <div class="card" id="box"></div>
+</div></section>
+
+<section id="lbs"><div class="wrap">
+  <h2>Leaderboard juara</h2>
+  <p class="hint">Urutan berdasarkan poin tertinggi. Jika sama, yang lebih cepat menang.</p>
+  <div id="lbnote"></div>
+  <div id="podium"></div>
+  <ol class="lb" id="lb"></ol>
+  <div id="adm"></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="closing">
+    <p>Kerja bukan hanya menyelesaikan tugas, tetapi menciptakan manfaat, menebar kebaikan, dan meninggalkan jejak.</p>
+    <small>#ShalehBermanfaat #SatyaBMC</small>
+  </div>
+</div></section>
+<footer><div class="wrap">Santri Karya · Shaleh, Profesional, Berakhlak Al-Qur'an, Bermanfaat</div></footer>
+
+<script>
+const Q=[
+{
+"t": "Samahah: mudah melayani",
+"s": "Antrean sedang panjang, dan seorang pelanggan beberapa kali bertanya tentang produk dan cara bayar.",
+"q": "Apa sikap terbaik?",
+"o": [
+"Menjawab singkat agar antrean cepat habis.",
+"Meminta pelanggan membaca keterangan sendiri.",
+"Menjelaskan dengan ramah dan jelas, lalu memastikan pelanggan paham.",
+"Meminta pelanggan kembali saat sepi."
+],
+"a": 2,
+"e": "Pelayanan yang mudah dan ramah membuat pelanggan nyaman dan percaya, sehingga nama baik BMC terjaga."
+},
+{
+"t": "Samahah: sabar melayani",
+"s": "Saat melayani pelanggan, ia banyak bertanya dan proses transaksi menjadi lebih lama.",
+"q": "Apa sikap terbaik seorang Satya?",
+"o": [
+"Menunjukkan wajah kesal agar pelanggan segera selesai",
+"Melayani dengan ramah, sabar, dan memudahkan selama sesuai aturan",
+"Mengutamakan pelanggan yang membeli paling mahal",
+"Mempersingkat pelayanan tanpa memastikan kebutuhan pelanggan"
+],
+"a": 1,
+"e": "Samahah berarti mudah dan ramah dalam melayani. Pelanggan merasa dihargai dan nama baik BMC terjaga."
+},
+{
+"t": "Samahah: mudah bertransaksi",
+"s": "Pelanggan membayar dengan uang besar, sedangkan uang kembalianmu belum cukup.",
+"q": "Apa tindakan terbaik?",
+"o": [
+"Mencari solusi cepat, misalnya menukar uang ke rekan atau menawarkan pembayaran lain, sambil memberi tahu pelanggan.",
+"Membulatkan kembalian ke angka yang menguntungkan toko.",
+"Menyuruh pelanggan mencari uang pas.",
+"Membiarkan pelanggan menunggu tanpa kabar."
+],
+"a": 0,
+"e": "Transaksi yang dipermudah dan transparan memberi rasa aman bagi pelanggan dan menunjukkan kamu bisa dipercaya."
+},
+{
+"t": "Jujur soal cacat produk",
+"s": "Kamu menemukan noda kecil di bagian bawah produk yang belum terlihat pelanggan.",
+"q": "Apa yang sebaiknya dilakukan?",
+"o": [
+"Diam saja karena pelanggan tidak melihatnya.",
+"Menutupi noda itu dengan menata produk dari sisi lain.",
+"Menjual lebih cepat sebelum pelanggan memeriksa.",
+"Menyampaikan cacatnya sebelum transaksi dan menawarkan solusi."
+],
+"a": 3,
+"e": "Kejujuran tentang kualitas menjaga amanah dan menghindarkan komplain. Pelanggan yang diperlakukan jujur cenderung kembali lagi."
+},
+{
+"t": "Jujur soal cacat karpet",
+"s": "Satya mengetahui karpet yang akan dijual memiliki cacat kecil.",
+"q": "Apa yang harus dilakukan?",
+"o": [
+"Menutupi cacat agar barang cepat terjual",
+"Menunggu pelanggan menemukan cacatnya sendiri",
+"Menjelaskan kondisi barang dengan jujur sebelum transaksi",
+"Tetap menyebut barang sempurna karena cacatnya kecil"
+],
+"a": 2,
+"e": "Kejujuran tentang kualitas menjaga amanah. Pelanggan percaya dan komplain di kemudian hari bisa dihindari."
+},
+{
+"t": "Bekerja untuk memberi dampak",
+"s": "Target hari ini sudah tercapai.",
+"q": "Bagaimana cara menilai pekerjaan yang benar-benar berdampak?",
+"o": [
+"Pekerjaan selesai, jadi tidak perlu dipikirkan lagi.",
+"Dilihat dari seberapa sibuk kita hari ini.",
+"Dilihat dari manfaat jangka panjangnya bagi pelanggan, masjid, dan masyarakat.",
+"Dilihat dari seberapa sering kita dipuji."
+],
+"a": 2,
+"e": "Dampak yang berkelanjutan menjadi amal bagi diri dan kekuatan bagi organisasi."
+},
+{
+"t": "Membantu rekan tim",
+"s": "Pekerjaan Satya sudah selesai, tetapi ia melihat rekan satu tim kesulitan menyelesaikan tugasnya.",
+"q": "Sikap yang paling mencerminkan bekerja untuk memberi dampak adalah…",
+"o": [
+"Langsung pulang karena tugas pribadi sudah selesai",
+"Membantu mencari solusi tanpa mengabaikan tanggung jawab sendiri",
+"Membiarkan rekan belajar dari kesulitannya sendiri",
+"Mengambil alih seluruh pekerjaan agar terlihat hebat"
+],
+"a": 1,
+"e": "Sebaik-baik manusia adalah yang paling bermanfaat. Membantu rekan menguatkan tim dan menambah manfaat bagi organisasi."
+},
+{
+"t": "Amanah memegang kas",
+"s": "Kamu dipercaya memegang uang kas, lalu ada kebutuhan pribadi yang mendesak.",
+"q": "Apa sikap yang paling amanah?",
+"o": [
+"Meminjam sedikit dari kas dan mengembalikannya besok tanpa memberi tahu siapa pun.",
+"Mencatat setiap uang masuk dan keluar, menghitung dengan rekan atau pengurus, dan segera melaporkan jika ada selisih.",
+"Mencatat nanti saja setelah kebutuhan pribadi selesai.",
+"Memakai kas dulu karena jumlahnya kecil."
+],
+"a": 1,
+"e": "Pencatatan yang tertib dan terbuka melindungi dirimu dari fitnah dan menjaga kepercayaan organisasi."
+},
+{
+"t": "Amanah uang kas organisasi",
+"s": "Satya memegang uang kas organisasi dan memakai sebagian untuk keperluan pribadi dengan niat menggantinya besok.",
+"q": "Apa tindakan yang benar?",
+"o": [
+"Boleh selama jumlahnya kecil",
+"Boleh jika tidak ada yang mengetahui",
+"Tidak masalah jika uang dikembalikan tepat waktu",
+"Tidak boleh menggunakan uang amanah tanpa izin; setiap transaksi harus dicatat dan dipertanggungjawabkan"
+],
+"a": 3,
+"e": "Uang kas adalah amanah. Pencatatan tertib dan izin yang jelas menjaga diri dari fitnah dan menjaga kepercayaan organisasi."
+},
+{
+"t": "Amanah saat merasa kecewa",
+"s": "Satya merasa diperlakukan tidak adil oleh atasannya. Ia sedang memegang uang hasil transaksi.",
+"q": "Apa sikap yang benar?",
+"o": [
+"Mengambil sebagian sebagai kompensasi atas perlakuan tersebut",
+"Menunda setoran sampai merasa dihargai",
+"Tetap menjaga uang, mencatat dan melaporkannya, lalu menyampaikan keberatan melalui jalur yang benar",
+"Menyimpan uang itu sementara tanpa memberi tahu siapa pun"
+],
+"a": 2,
+"e": "Amanah tidak bergantung pada suasana hati. Keberatan disampaikan lewat jalur yang benar, bukan dengan melanggar amanah."
+}
+];
+const LIMIT=30,box=document.getElementById('box');
+let name="",i=0,sel=null,done=false,correct=0,points=0,ms=0,t0=0,tick=null,rows=[],DB=null,UID=null,isOwner=false,saved=false;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt=m=>(m/1000).toFixed(1)+" dtk";
+function go(id){document.getElementById(id).scrollIntoView()}
+try{name=localStorage.getItem("satya_name")||""}catch(e){}
+
+function start(){
+  box.innerHTML=`<h2 style="font-size:30px">Siap tanding?</h2><p class="hint">Isi namamu, nama ini yang muncul di leaderboard.</p>
+  <div class="rules"><div><b>10</b>soal</div><div><b>+50</b>bonus cepat</div><div><b>±5 mnt</b>total</div></div>
+  <label for="nm" style="font-weight:600">Nama kamu</label>
+  <input id="nm" maxlength="24" placeholder="Contoh: Aisyah" autocomplete="name" value="${esc(name)}">
+  <button class="btn" id="go">Gas mulai</button>`;
+  const nm=document.getElementById('nm'),b=document.getElementById('go');
+  const upd=()=>b.disabled=!nm.value.trim();upd();nm.oninput=upd;
+  nm.onkeydown=e=>{if(e.key==="Enter"&&!b.disabled)b.click()};
+  b.onclick=()=>{name=nm.value.trim().slice(0,24);try{localStorage.setItem("satya_name",name)}catch(e){}i=0;correct=0;points=0;ms=0;saved=false;ask()};
+}
+function ask(){
+  const c=Q[i];
+  box.innerHTML=`<div class="top"><span class="chip">Soal ${i+1}/${Q.length} · ${c.t}</span><span class="chip hot" id="tm">${LIMIT} dtk</span></div>
+  <div class="timer"><i id="tb"></i></div>
+  <h3 class="q" id="qq">${c.q}</h3><p class="case">${c.s}</p>
+  <div class="opts" role="group" aria-labelledby="qq">${c.o.map((t,k)=>`<button class="opt" data-k="${k}"><b>${"ABCD"[k]}</b><span>${t}</span></button>`).join("")}</div>
+  <div class="fb" id="fb" role="status"></div>
+  <div class="row"><button class="btn" id="chk" disabled>Periksa Jawaban (${i+1}/${Q.length})</button></div>`;
+  sel=null;done=false;t0=performance.now();
+  const opts=[...box.querySelectorAll('.opt')],chk=document.getElementById('chk'),tm=document.getElementById('tm'),tb=document.getElementById('tb');
+  clearInterval(tick);
+  tick=setInterval(()=>{const s=(performance.now()-t0)/1000;tm.textContent=Math.max(0,Math.ceil(LIMIT-s))+" dtk";tb.style.transform=`scaleX(${Math.max(0,1-s/LIMIT)})`},200);
+  opts.forEach(b=>b.onclick=()=>{if(done)return;sel=+b.dataset.k;opts.forEach(x=>x.classList.toggle('sel',x===b));chk.disabled=false});
+  chk.onclick=()=>{
+    if(done){i++;i>=Q.length?finish():ask();box.scrollIntoView({block:"start"});return}
+    done=true;clearInterval(tick);
+    const took=performance.now()-t0;ms+=took;
+    const ok=sel===c.a;let gain=0;
+    if(ok){correct++;gain=100+Math.max(0,Math.round(50*(1-took/1000/LIMIT)));points+=gain}
+    opts.forEach((b,k)=>{b.disabled=true;b.classList.remove('sel');if(k===c.a)b.classList.add('ok');else if(k===sel)b.classList.add('no')});
+    const fb=document.getElementById('fb');fb.className='fb show'+(ok?'':' bad');
+    fb.innerHTML=`<strong>${ok?"Benar! +"+gain+" poin":"Salah, +0 poin"}</strong> (${fmt(took)}). ${c.e}`;
+    chk.textContent=i===Q.length-1?"Lihat skor":"Soal berikutnya";
+  };
+}
+async function finish(){
+  const code=`SATYA|${name.replace(/\|/g," ")}|${points}|${correct}|${Math.round(ms)}`;
+  const title=points>=1000?"Satya Sprinter ⚡":points>=700?"Satya Solid 🔥":"Satya Learner 🌱";
+  box.innerHTML=`<div class="top"><span class="chip">Hasil ${esc(name)}</span></div>
+  <div class="big">${points}</div><div class="badge">${title}</div>
+  <div class="stats"><span class="chip">Benar ${correct}/${Q.length}</span><span class="chip">Waktu ${fmt(ms)}</span><span class="chip hot" id="rk">Menghitung peringkat…</span></div>
+  <p class="hint">Adab yang baik memberi dampak bagi dirimu (dipercaya, tumbuh) dan bagi BMC (pelanggan percaya, tim kuat, manfaat berkelanjutan).</p>
+  <div class="note" style="margin-top:14px"><strong>Kirim kode ini ke chat host agar namamu masuk papan juara:</strong><div class="code" id="cd">${esc(code)}</div><button class="btn ghost" id="cp" style="margin-top:10px">Salin kode skor</button></div>
+  <div class="row"><button class="btn" id="re">Main lagi</button><button class="btn ghost" onclick="go('lbs')">Lihat leaderboard</button></div>`;
+  document.getElementById('re').onclick=()=>{start();box.scrollIntoView()};
+  document.getElementById('cp').onclick=async e=>{try{await navigator.clipboard.writeText(code);e.target.textContent="Tersalin ✓"}catch(x){const r=document.createRange();r.selectNodeContents(document.getElementById('cd'));const s=getSelection();s.removeAllRanges();s.addRange(r);e.target.textContent="Kode terblok, salin manual"}};
+  if(points>=700)burst();
+  await save();renderLB();
+}
+function burst(){["🎉","⭐","🔥","✨"].forEach((e,n)=>{for(let k=0;k<7;k++){const s=document.createElement('span');s.className='cf';s.textContent=e;s.style.left=Math.random()*95+'vw';s.style.animationDelay=(Math.random()*.8)+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),3500)}})}
+async function save(){
+  const rec={name,points,correct,ms:Math.round(ms),at:Date.now()};
+  if(!DB||!UID){const k=rows.findIndex(r=>r.id==="local");if(k<0||better(rec,rows[k])){if(k>=0)rows.splice(k,1);rows.push({id:"local",...rec})}return}
+  try{
+    const ref=DB.doc("scores/"+UID),s=await ref.get(),d=s.exists?s.data():null;
+    if(!d||better(rec,d))await ref.set(rec);
+  }catch(e){console.error(e)}
+}
+const better=(a,b)=>a.points>b.points||(a.points===b.points&&a.ms<b.ms);
+function sorted(){return rows.slice().sort((a,b)=>b.points-a.points||a.ms-b.ms)}
+function renderLB(){
+  const r=sorted(),me=UID||"local",pos=r.findIndex(x=>x.id===me);
+  const rk=document.getElementById('rk');if(rk)rk.textContent=pos>=0?`Peringkat #${pos+1} dari ${r.length}`:"Belum masuk peringkat";
+  document.getElementById('lbnote').innerHTML=DB?"":`<p class="note">Peringkat resmi ditampilkan oleh host di layar. Kirim kode skormu ke chat agar namamu masuk papan juara.</p>`;
+  const pod=document.getElementById('podium'),lb=document.getElementById('lb');
+  if(!r.length){pod.innerHTML=`<p class="note">Belum ada skor. Jadilah juara pertama!</p>`;lb.innerHTML="";return}
+  const medal=["🥇","🥈","🥉"],ord=[1,0,2].filter(k=>r[k]);
+  pod.innerHTML=`<div class="podium">${ord.map(k=>`<div class="pod p${k+1}"><div class="m">${medal[k]}</div><div class="n">${esc(r[k].name)}</div><div class="s">${r[k].points} poin</div></div>`).join("")}</div>`;
+  lb.innerHTML=r.map((x,k)=>`<li class="${x.id===me?'me':''}"><span class="r">${k<3?medal[k]:k+1}</span><span class="nm">${esc(x.name)}${x.id===me?" (kamu)":""}<small>Benar ${x.correct}/${Q.length} · ${fmt(x.ms)}</small></span><span class="pt">${x.points}</span></li>`).join("");
+}
+async function resetAll(){
+  if(!DB||!confirm("Hapus semua skor leaderboard?"))return;
+  const s=await DB.collection("scores").get();await Promise.all(s.docs.map(d=>DB.doc("scores/"+d.id).delete()));
+}
+start();renderLB();
+(async()=>{
+  try{
+    if(!window.claude)return;
+    const [db,user]=await Promise.all([claude.use("db"),claude.use("user")]);
+    if(!db||!user)return;
+    DB=db;UID=await user.id();isOwner=user.isOwner();
+    if(isOwner){const a=document.getElementById('adm');a.innerHTML=`<div class="card" style="margin-top:16px"><h3 style="font-size:22px;margin-bottom:6px">Panel host</h3><p class="hint">Tempel kode skor dari chat peserta (satu per baris), lalu tekan Tambahkan.</p><textarea id="codes" rows="4" placeholder="SATYA|Aisyah|620|4|38200"></textarea><div class="row"><button class="btn" id="addc">Tambahkan skor</button><button class="btn ghost" id="tvb">Mode layar</button><button class="btn ghost" id="rs">Reset leaderboard</button></div><p class="hint" id="addm" role="status" style="margin:10px 0 0"></p></div>`;
+      document.getElementById('rs').onclick=resetAll;
+      document.getElementById('tvb').onclick=()=>document.body.classList.toggle('tv');
+      document.getElementById('addc').onclick=async()=>{
+        const ta=document.getElementById('codes'),m=document.getElementById('addm');let ok=0,bad=0;
+        for(const line of ta.value.split(/\n/)){
+          if(!line.trim())continue;const p=line.trim().split('|');
+          const nm=(p[1]||'').trim().slice(0,24),pt=+p[2],cr=+p[3],t=+p[4];
+          if(p[0]!=='SATYA'||p.length<5||!nm||!(pt>=0&&pt<=Q.length*150)||!(cr>=0&&cr<=Q.length)||!(t>=0)){bad++;continue}
+          const h=[...nm.toLowerCase()].reduce((x,c)=>(x*31+c.charCodeAt(0))>>>0,7).toString(36);
+          try{const ref=DB.doc('scores/p_'+h),s=await ref.get(),d=s.exists?s.data():null,rec={name:nm,points:pt,correct:cr,ms:Math.round(t),at:Date.now()};if(!d||better(rec,d))await ref.set(rec);ok++}catch(e){bad++}
+        }
+        m.textContent=ok+' skor diproses'+(bad?', '+bad+' baris dilewati (format salah)':'');if(ok)ta.value='';
+      }}
+    DB.collection("scores").orderBy("points","desc").limit(200).onSnapshot(s=>{rows=s.docs.map(d=>({id:d.id,...d.data()}));renderLB()},e=>console.error(e));
+  }catch(e){console.error(e)}
+})();
+</script>
+</body>
+</html>
